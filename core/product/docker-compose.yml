@@ -1,18 +1,47 @@
 services:
-  postgres:
-    container_name: stocktrak_postgres
+  db:
+    container_name: stocktrak_product_postgres
     image: postgres
     environment:
-      POSTGRES_USER: thiago
-      POSTGRES_PASSWORD: root 
-      POSTGRES_DB: stocktrak
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=stocktrak
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - ./pgdata:/var/lib/postgresql/data
     networks:
       - stocktrak-network
 
+ # app:
+ #   build:
+ #     context: .
+ #     dockerfile: Dockerfile
+ #   container_name: stocktrak_product_api
+ #   environment:
+ #     - PORT=3000
+ #   ports:
+ #     - "3000:3000"
+ #   depends_on:
+ #     - db
+ #   volumes:
+ #     - ./src:/app/src
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    container_name: product-pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=pgadmin4
+    ports: 
+      - "5050:80"
+    depends_on:
+      - db
+    networks:
+      - stocktrak-network
+
+
+      
 networks:
   stocktrak-network:
     driver: bridge
