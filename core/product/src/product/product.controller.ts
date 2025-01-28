@@ -6,7 +6,6 @@ import { Product } from './entity/product.entity';
 @Controller('product')
 export class ProductController extends BaseController<Product> {
   constructor(private readonly productService: ProductService) {
-    super(productService)
+    super(productService);
   }
-
 }

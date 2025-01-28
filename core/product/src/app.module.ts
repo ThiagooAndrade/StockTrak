@@ -12,10 +12,10 @@ import { Category } from './category/entity/category.entity';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: ".env"
+      envFilePath: '.env',
     }),
     TypeOrmModule.forRoot({
-      type: "postgres",
+      type: 'postgres',
       host: process.env.DB_HOST,
       port: Number(process.env.DB_PORT) || 5432,
       username: process.env.DB_USERNAME,
@@ -29,9 +29,9 @@ import { Category } from './category/entity/category.entity';
       autoLoadEntities: true,
     }),
     ProductModule,
-    CategoryModule
+    CategoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}
