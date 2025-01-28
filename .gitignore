@@ -1,3 +1,6 @@
-core/product/pgdata/
-core/product/dist/
-core/product/node_modules/
+*/**/pgdata
+*/**/dist
+*/**/node_modules
+
+*/.env
+*/**/.env
